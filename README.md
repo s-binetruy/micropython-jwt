@@ -17,7 +17,7 @@ The tests have been perfomed on my host (MicroPython v1.12 on 2020-04-18; darwin
 micropython src/main.py
 ```
 
-### From you ESP board
+### From your ESP board
 
 1. Upload the 'src' content
 1. The main.py will be executed after upload
