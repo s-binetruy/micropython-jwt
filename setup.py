@@ -16,8 +16,8 @@ setup(
     author_email="jwt@binetruy.fr",
     url="https://github.com/s-binetruy/micropython-jwt",
     packages=["ujwt"],
-    package_dir = {'': 'src'},
-    install_requires=['micropython-hmac', 'micropython-base64'],
+    package_dir={"": "src"},
+    install_requires=["micropython-hmac", "micropython-base64"],
     cmdclass={"sdist": sdist_upip.sdist},
     classifiers=[
         "Development Status :: 3 - Alpha",

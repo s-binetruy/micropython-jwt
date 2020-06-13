@@ -9,16 +9,20 @@ import uhashlib as _hashlib
 trans_5C = bytes((x ^ 0x5C) for x in range(256))
 trans_36 = bytes((x ^ 0x36) for x in range(256))
 
+
 def translate(d, t):
     return bytes(t[x] for x in d)
 
+
 digest_size = 32
+
 
 class HMAC256:
     """RFC 2104 HMAC class.  Also complies with RFC 4231.
 
     Port of the hmac library using uhashlib.
     """
+
     blocksize = 64  # 256-bit HMAC; cannot be changed in subclasses.
 
     def __init__(self, key, msg=None):
@@ -31,9 +35,11 @@ class HMAC256:
         """
 
         if not isinstance(key, (bytes, bytearray)):
-            raise TypeError("key: expected bytes or bytearray, but got %r" % type(key).__name__)
-        
-        self.digest_cons = lambda d=b'': _hashlib.sha256(d)
+            raise TypeError(
+                "key: expected bytes or bytearray, but got %r" % type(key).__name__
+            )
+
+        self.digest_cons = lambda d=b"": _hashlib.sha256(d)
 
         self.outer = self.digest_cons()
         self.inner = self.digest_cons()
