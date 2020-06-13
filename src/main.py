@@ -16,4 +16,4 @@ print("Test2 ==> %s" % (expectedToken == token))
 jwt2 = Jwt("367C4C4D-5563-459E-AC8A-FDAFBFF026FB")
 token = jwt2.encode({"name": "tester"}).decode('utf-8')
 expectedToken = "eyJ0eXAiOiAiSldUIiwgImFsZyI6ICJIUzI1NiJ9.eyJuYW1lIjogInRlc3RlciJ9.ikY_Qy07PesT6N-x0lwegn537wA8bi2Lo5LQRdlYi7Q"
-print("Test1 ==> %s" % (expectedToken == token))
+print("Test3 ==> %s" % (expectedToken == token))
