@@ -21,10 +21,24 @@ class Jwt:
         segments.append(signature64)
 
         token = b".".join(segments)
-        return token
+        return token.decode("utf-8")
 
     def decode(self, token):
-        raise NotImplementedError()
+        if not isinstance(token, str):
+            raise ValueError("Token must be a string")
+
+        segments = token.split(".")
+        tokenSignature = bytes(segments.pop(), "utf-8")
+
+        signing = bytes(".".join(segments), "utf-8")
+        signature = self._sign(signing)
+        signature64 = self._encodeBase64(signature)
+
+        if (tokenSignature != signature64):
+            raise ValueError("Invalid signature")
+        
+        jsonMsg = self._decodeBase64(segments[1])
+        return ujson.loads(jsonMsg)
 
     def _encodeBase64(self, data):
         s = data
@@ -33,6 +47,14 @@ class Jwt:
 
         b64 = ubinascii.b2a_base64(s)[:-1]
         return b64.replace(b"=", b"").replace(b"+", b"-").replace(b"/", b"_")
+
+    def _decodeBase64(self, data):
+        s = data
+        if isinstance(s, str):
+            s = bytes(data, "utf-8")
+
+        msg = s.replace(b"-", b"+").replace(b"_", b"/")
+        return ubinascii.a2b_base64(msg)
 
     def _sign(self, data):
         return HMAC256(self._secret, data).digest()
