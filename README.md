@@ -2,9 +2,7 @@
 
 Simple implementation to generate JWT tokens (only HMAC-SHA256)
 
-Please note this implementation is still under development.
-
-The tests have been perfomed on my host (MicroPython v1.12 on 2020-04-18; darwin version) and on a WEMOS D1 Mini.
+The tests have been performed on my host (MicroPython v1.12 on 2020-04-18; darwin version) and on a WEMOS D1 Mini.
 
 ## How to test
 
