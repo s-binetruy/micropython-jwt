@@ -53,6 +53,10 @@ class Jwt:
         if isinstance(s, str):
             s = bytes(data, "utf-8")
 
+        rem = len(s) % 4
+        if rem > 0:
+            s += b"=" * (4 - rem)
+
         msg = s.replace(b"-", b"+").replace(b"_", b"/")
         return ubinascii.a2b_base64(msg)
 
